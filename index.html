@@ -251,20 +251,57 @@
   </footer>
   <!-- ✅ SweetAlert2 -->
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <script>Swal.fire({
-  icon: 'success',
-  title: '¡Éxito!',
-  text: 'Agrega tus productos y bebidas, confirmaremos tu orden tan pronto recibamos tu comprobante. Costo del domicilio dependerá de la mensajeria',
-  confirmButtonText: 'Aceptar',
-  background: '#0a0a0a',             // Fondo negro
-  color: '#ffffff',                   // Texto blanco
-  confirmButtonColor: 'rgb(156 87 24)', // Botón amarillo neón
-  iconColor: 'rgb(156 87 24)',    // Icono amarillo neón
-});
+  <script>
+// CONTACTO DEL PROGRAMADOR (cámbialo)
+const CONTACTO = "Si te interesa el 50% de acuerdo y el restante a finales de Enero, te recomendamos ponerte en contacto con el programador para que puedas tener para siempre desde ahora un sistema bonito y profesional adaptado a tu marca o negocio. Feliz Dia";
+
+// Mostrar alerta y luego bloquear página
+function bloquearPagina() {
+  Swal.fire({
+    icon: "info",
+    title: "Información importante",
+    text: "Por favor ponerse en contacto con el programador para llegar a un acuerdo.",
+    confirmButtonText: "Entendido",
+    allowOutsideClick: false,
+    allowEscapeKey: false
+  }).then(() => {
+
+    // Crear capa que bloquea toda la pantalla
+    const overlay = document.createElement("div");
+    overlay.id = "bloqueoTotal";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.background = "rgba(0,0,0,0.9)";
+    overlay.style.color = "white";
+    overlay.style.display = "flex";
+    overlay.style.flexDirection = "column";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.fontSize = "20px";
+    overlay.style.zIndex = "999999";
+
+    overlay.innerHTML = `
+      <p><b>ACCESO BLOQUEADO</b></p>
+      <p>${CONTACTO}</p>
+    `;
+
+    document.body.appendChild(overlay);
+
+    // Evitar scroll
+    document.body.style.overflow = "hidden";
+  });
+}
+
+// Ejecutar de inmediato
+bloquearPagina();
 </script>
   <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
